@@ -1,0 +1,136 @@
+---
+run:
+  concurency: 4
+  deadline: 1m
+  issues-exit-code: 1
+  skipped-dirs:
+    - ./src/geoeditor/vendor/
+    - ./src/geoeditor/testing/
+  tests: false
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters:
+  enable-all: false
+  disable-all: true
+  fast: false
+  enable:
+    - deadcode
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - unused
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - gosec
+    - interfacer
+    - maligned
+    - misspell
+    - nakedret
+    - prealloc
+    - scopelint
+    - unconvert
+    - unparam
+    - funlen
+    - rowserrcheck
+    - gochecknoinits
+    - varcheck
+    - whitespace
+    - typecheck
+    - lll
+
+linters-settings:
+  errcheck:
+    check-type-assertions: false
+    check-blank: false
+    exclude: .errcheck_exclude
+
+  funlen:
+    lines: 300
+    statements: 200
+
+  staticcheck:
+    enable:
+      - all
+
+  govet:
+    check-shadowing: false
+    enable-all: false
+    disable-all: false
+    enable:
+      - atomicalign
+      - httpresponse
+      - unmarshal
+      - bools
+      - assign
+      - lostcancel
+      - loopclosure
+      - stdmethods
+      - unreachable
+    disable:
+      - shadow
+
+  gofmt:
+    simplify: true
+
+  gocyclo:
+    min-complexity: 140
+
+  maligned:
+    suggest-new: true
+
+  dupl:
+    trigger: 100
+
+  goconst:
+    min-len: 5
+    min-occurences: 3
+
+  misspell:
+    locale: US
+    ignore-words:
+      - prefered
+      - neighbours
+
+  lll:
+    line-length: 500
+    tab-width: 1
+
+  unused:
+    check-exported: false
+
+  unparam:
+    check-unexported: false
+
+  naked-ret:
+    max-func-lines: 30
+
+  prealloc:
+    simple: true
+    range-loops: true
+    for-loops: true
+
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - diagnostic
+    disabled-checks:
+      - importShadow
+      - paramTypeCombine
+      - unnamedResult
+      - ptrToRefParam
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 100
+  max-same-issues: 400
+  new: false
